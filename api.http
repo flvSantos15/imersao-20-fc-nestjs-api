@@ -1,0 +1,8 @@
+GET http://localhost:3000/places?text=av governador valadares, betim, 1000
+
+###
+@originId = 
+@destinationId = 
+
+###
+GET http://localhost:3000/directions?originId{{originId}}=&destinationId={{destinationId}}
