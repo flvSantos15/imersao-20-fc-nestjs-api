@@ -18,6 +18,7 @@ export class RoutesDriverGateway {
     for (const step of steps) {
       const { lat, lng } = step.start_location
       client.emit(`server:new-points/${route_id}:list`, { route_id, lat, lng })
+      client.broadcast.emit(`server:new-points:list`, { route_id, lat, lng })
 
       await sleep(2000)
       const { lat: lat2, lng: lng2 } = step.end_location
@@ -26,6 +27,12 @@ export class RoutesDriverGateway {
         lat: lat2,
         lng: lng2
       })
+      client.broadcast.emit(`server:new-points:list`, {
+        route_id,
+        lat: lat2,
+        lng: lng2
+      })
+      await sleep(2000)
     }
   }
 }
